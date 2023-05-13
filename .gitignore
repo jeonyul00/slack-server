@@ -37,3 +37,5 @@ lerna-debug.log*
 # independent
 memo.txt
 .env
+output/tsconfig.json
+output/ormconfig.json
