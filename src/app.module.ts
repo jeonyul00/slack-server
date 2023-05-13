@@ -9,11 +9,32 @@ import { ChannelsController } from './channels/channels.controller';
 import { ChannelsService } from './channels/channels.service';
 import { WorkspacesService } from './worckspaces/workspaces.service';
 import { WorkspacesController } from './worckspaces/workspaces.controller';
+import { ChannelsModule } from './channels/channels.module';
+import { WorkspacesModule } from './workspaces/workspaces.module';
+import { UsersService } from './users/users.service';
+import { UsersController } from './users/users.controller';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), UsersModule, DmsModule],
-  controllers: [AppController, ChannelsController, WorkspacesController],
-  providers: [AppService, ConfigService, ChannelsService, WorkspacesService],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    UsersModule,
+    DmsModule,
+    ChannelsModule,
+    WorkspacesModule,
+  ],
+  controllers: [
+    AppController,
+    ChannelsController,
+    WorkspacesController,
+    UsersController,
+  ],
+  providers: [
+    AppService,
+    ConfigService,
+    ChannelsService,
+    WorkspacesService,
+    UsersService,
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
