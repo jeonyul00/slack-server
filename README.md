@@ -2,4 +2,4 @@
 
 nestJS
 <br />
-typeORM
+TypeORM
