@@ -22,10 +22,12 @@ import { Mentions } from './entities/Mentions';
 import { Users } from './entities/Users';
 import { WorkspaceMembers } from './entities/WorkspaceMembers';
 import { Workspaces } from './entities/Workspaces';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    AuthModule,
     UsersModule,
     DmsModule,
     ChannelsModule,
@@ -52,6 +54,7 @@ import { Workspaces } from './entities/Workspaces';
       keepConnectionAlive: true, // db연결 유지 : hotload쓸 때 필수
       charset: 'utf8mb4',
     }),
+    TypeOrmModule.forFeature([Users]),
   ],
   controllers: [
     AppController,
