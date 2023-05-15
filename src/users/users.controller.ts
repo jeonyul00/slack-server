@@ -32,14 +32,13 @@ export class UsersController {
     return user || false;
   }
 
-  @UseGuards(new NotLoggedInGuard())
   @ApiOperation({ summary: '회원가입' })
+  @UseGuards(new NotLoggedInGuard())
   @Post()
   async join(@Body() data: JoinRequestDto) {
     await this.usersService.join(data.email, data.nickname, data.password);
   }
 
-  @ApiResponse({ type: UserDto, status: 200, description: 'ok' })
   @ApiOperation({ summary: '로그인' })
   @UseGuards(new LocalAuthGuard())
   @Post('login')

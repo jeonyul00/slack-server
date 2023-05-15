@@ -20,18 +20,14 @@ import { Channels } from './entities/Channels';
 import { DMs } from './entities/DMs';
 import { Mentions } from './entities/Mentions';
 import { Users } from './entities/Users';
-import { WorkspaceMembers } from './entities/WorkspaceMembers';
+
 import { Workspaces } from './entities/Workspaces';
 import { AuthModule } from './auth/auth.module';
+import { WorkspaceMembers } from './entities/WorkspaceMembers';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    AuthModule,
-    UsersModule,
-    DmsModule,
-    ChannelsModule,
-    WorkspacesModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: '127.0.0.1',
@@ -54,20 +50,25 @@ import { AuthModule } from './auth/auth.module';
       keepConnectionAlive: true, // db연결 유지 : hotload쓸 때 필수
       charset: 'utf8mb4',
     }),
-    TypeOrmModule.forFeature([Users]),
+
+    AuthModule,
+    UsersModule,
+    WorkspacesModule,
+    ChannelsModule,
+    DmsModule,
   ],
   controllers: [
     AppController,
-    ChannelsController,
-    WorkspacesController,
-    UsersController,
+    // ChannelsController,
+    // WorkspacesController,
+    // UsersController,
   ],
   providers: [
     AppService,
-    ConfigService,
-    ChannelsService,
-    WorkspacesService,
-    UsersService,
+    // ConfigService,
+    // ChannelsService,
+    // WorkspacesService,
+    // UsersService,
   ],
 })
 export class AppModule implements NestModule {
