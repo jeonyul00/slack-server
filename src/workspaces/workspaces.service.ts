@@ -102,11 +102,21 @@ export class WorkspacesService {
     await this.channelMembersRepository.save(channelMember);
   }
 
-  async getWorkspaceMembers(url: string, id: number) {
+  async getWorkspaceMembers(url: string, id?: number) {
     return this.usersRepository
       .createQueryBuilder('user')
       .where('user.id = :id', { id })
       .innerJoin('user.Workspaces', 'workspace', 'workspace.url = :url', {
+        url,
+      })
+      .getOne();
+  }
+
+  async getWorkspaceMember(url: string, id: number) {
+    return this.usersRepository
+      .createQueryBuilder('user')
+      .where('user.id = :id', { id })
+      .innerJoin('user.Workspaces', 'workspaces', 'workspaces.url = :url', {
         url,
       })
       .getOne();

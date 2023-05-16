@@ -22,7 +22,7 @@ export class UndefinedToNullInterceptor implements NestInterceptor {
     next: CallHandler<any>,
   ): Observable<any> | Promise<Observable<any>> {
     // next.handle() 전 === 컨트롤러 가기 전
-    // next.handle() 후 === 컨트롤러 가고난 후 : 사실은 데이터를 내보내기 바로 직전
+    // next.handle() 후 === 컨트롤러 가고난 후 : 데이터를 내보내기 바로 직전
     return next
       .handle()
       .pipe(map((data) => (data === undefined ? null : data))); // data : 컨트롤러에서 반환한 데이터

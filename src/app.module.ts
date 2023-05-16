@@ -24,6 +24,9 @@ import { Users } from './entities/Users';
 import { Workspaces } from './entities/Workspaces';
 import { AuthModule } from './auth/auth.module';
 import { WorkspaceMembers } from './entities/WorkspaceMembers';
+import { EventsGateway } from './events/events.gateway';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -50,6 +53,9 @@ import { WorkspaceMembers } from './entities/WorkspaceMembers';
       keepConnectionAlive: true, // db연결 유지 : hotload쓸 때 필수
       charset: 'utf8mb4',
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+    }),
 
     AuthModule,
     UsersModule,
@@ -65,6 +71,7 @@ import { WorkspaceMembers } from './entities/WorkspaceMembers';
   ],
   providers: [
     AppService,
+
     // ConfigService,
     // ChannelsService,
     // WorkspacesService,
