@@ -5,3 +5,8 @@ nestJS
 TypeORM
 <br />
 swagger
+<br />
+websocket
+<br />
+bcrypt
+<br />
